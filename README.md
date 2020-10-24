@@ -1,11 +1,11 @@
-** 데이터가 되는 json 파일 경로는 enumeration 패키지의 Common 클래스에서 JSON_PATH 에 입력해두었음
-** JSON_PATH( "C:\\0.posco\\01.java\\SeoulTouristSights\\data\\서울특별시 장애인 관광지 정보.json" )
+** 데이터가 되는 json 파일 경로는 enumeration 패키지의 Common 클래스에서 JSON_PATH 에 입력해두었음<br />
+** JSON_PATH( "C:\\0.posco\\01.java\\SeoulTouristSights\\data\\서울특별시 장애인 관광지 정보.json" )<br />
 ** 만약에 01.java 가 아닌 폴더에서 import 했거나, step17_SeoulTouristSights 프로젝트 폴더 상위에 또다른 폴더가 있다면 맞춰서 수정해주어야 함
 
-** DDL 전 필수작업
-** cmd -> sqlplus / as sysdba -> alter system set processes=300 scope=spfile -> shutdown immediate -> startup
-** 한 번에 많은 작업을 하기 위한 프로세스 수 변경(프로세스 수의 default 는 100)
-** 이후 데이터베이스에 대하여 shutdown immediate(강제종료) 와 startup(시작) 을 해야만 비로소 프로세스 수 변경이 반영됨
+** DDL 전 필수작업<br />
+** cmd -> sqlplus / as sysdba -> alter system set processes=300 scope=spfile -> shutdown immediate -> startup<br />
+** 한 번에 많은 작업을 하기 위한 프로세스 수 변경(프로세스 수의 default 는 100)<br />
+** 이후 데이터베이스에 대하여 shutdown immediate(강제종료) 와 startup(시작) 을 해야만 비로소 프로세스 수 변경이 반영됨<br />
 ** (추가적인 DML 작업은 없습니다.)
 
 1. 주제
