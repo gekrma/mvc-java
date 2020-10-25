@@ -1,7 +1,6 @@
 package seoul.touristsights.enumeration;
 
 public enum Query {
-	
 	INSERT_SERVICE( "insert into service values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )" ),
 	INSERT_SIGHT( "insert into sight values( SEQ.nextval, ?, ?, ?, ? )" ),
 	INSERT_DETAIL( "insert into detail values( SEQ.nextval - 1, ?, ?, ?, ? )" ), // ORA-08002 임시방편

@@ -32,35 +32,36 @@ public class CommonMethod {
 	public void add( ArrayList<SightCompleteInfo> list, ResultSet rset ) throws SQLException {
 		
 		list.add( 
-				new SightCompleteInfo(
-						new Sight(
-									rset.getString( Common.FACILITY_NAME.getValue() ),
-									rset.getString( Common.DISTRICT.getValue() ),
-									rset.getString( Common.SECTION.getValue() ),
-									rset.getString( Common.HITS.getValue() )
-								),
-						new Service(
-									rset.getString( Common.FACILITY_NAME.getValue() ),
-									rset.getString( Common.MAIN_ENTRANCE_LOAD.getValue() ),
-									rset.getString( Common.ACCESSIBLE_PARKING_AREA.getValue() ),
-									rset.getString( Common.REMOVE_HEIGHT_DIFFERENCE_OF_MAIN_ENTRANCE.getValue() ),
-									rset.getString( Common.ACCESSIBLE_ELEVATOR.getValue() ),
-									rset.getString( Common.ACCESSIBLE_TOILET.getValue() ),
-									rset.getString( Common.ACCESSIBLE_GUESTROOM.getValue() ),
-									rset.getString( Common.ACCESSIBLE_SEATS.getValue() ),
-									rset.getString( Common.ACCESSIBLE_TICKET_OFFICE.getValue() ),
-									rset.getString( Common.BLIND_CONVENIENCE_SERVICE.getValue() ),
-									rset.getString( Common.DEAF_CONVENIENCE_SERVICE.getValue() ),
-									rset.getString( Common.INFORMATION_SERVICE.getValue() ),
-									rset.getString( Common.WHEELCHAIR_RENTAL.getValue() )
-								),
-						new SightDetail(
-									rset.getString( Common.PHONE_NUMBER.getValue() ),
-									rset.getString( Common.ADDRESS.getValue() ),
-									rset.getString( Common.IMAGE.getValue() ),
-									rset.getString( Common.HOMEPAGE.getValue() )
-								)
-				));
+			new SightCompleteInfo(
+				new Sight(
+					rset.getString( Common.FACILITY_NAME.getValue() ),
+					rset.getString( Common.DISTRICT.getValue() ),
+					rset.getString( Common.SECTION.getValue() ),
+					rset.getString( Common.HITS.getValue() )
+				),
+				new Service(
+					rset.getString( Common.FACILITY_NAME.getValue() ),
+					rset.getString( Common.MAIN_ENTRANCE_LOAD.getValue() ),
+					rset.getString( Common.ACCESSIBLE_PARKING_AREA.getValue() ),
+					rset.getString( Common.REMOVE_HEIGHT_DIFFERENCE_OF_MAIN_ENTRANCE.getValue() ),
+					rset.getString( Common.ACCESSIBLE_ELEVATOR.getValue() ),
+					rset.getString( Common.ACCESSIBLE_TOILET.getValue() ),
+					rset.getString( Common.ACCESSIBLE_GUESTROOM.getValue() ),
+					rset.getString( Common.ACCESSIBLE_SEATS.getValue() ),
+					rset.getString( Common.ACCESSIBLE_TICKET_OFFICE.getValue() ),
+					rset.getString( Common.BLIND_CONVENIENCE_SERVICE.getValue() ),
+					rset.getString( Common.DEAF_CONVENIENCE_SERVICE.getValue() ),
+					rset.getString( Common.INFORMATION_SERVICE.getValue() ),
+					rset.getString( Common.WHEELCHAIR_RENTAL.getValue() )
+				),
+				new SightDetail(
+					rset.getString( Common.PHONE_NUMBER.getValue() ),
+					rset.getString( Common.ADDRESS.getValue() ),
+					rset.getString( Common.IMAGE.getValue() ),
+					rset.getString( Common.HOMEPAGE.getValue() )
+				)
+			)	
+		);
 	}
 	
 	// insert 시 테이블별 분기
@@ -70,37 +71,40 @@ public class CommonMethod {
 		while ( insertResult ) {
 			
 			insertResult = serviceDAO.insertService( 
-					new Service(
-								content.getSisulname(),
-								content.getSt1(),
-								content.getSt2(),
-								content.getSt3(),
-								content.getSt4(),
-								content.getSt5(),
-								content.getSt6(),
-								content.getSt7(),
-								content.getSt8(),
-								content.getSt9(),
-								content.getSt10(),
-								content.getSt11(),
-								content.getSt12()
-							));
+						new Service(
+							content.getSisulname(),
+							content.getSt1(),
+							content.getSt2(),
+							content.getSt3(),
+							content.getSt4(),
+							content.getSt5(),
+							content.getSt6(),
+							content.getSt7(),
+							content.getSt8(),
+							content.getSt9(),
+							content.getSt10(),
+							content.getSt11(),
+							content.getSt12()
+						)
+					);
 			
 			insertResult = sightDAO.insertSight( 
-					new Sight(
-								content.getSisulname(),
-								content.getGu(),
-								content.getSection(),
-								content.getHit()
-							));
+						new Sight(
+							content.getSisulname(),
+							content.getGu(),
+							content.getSection(),
+							content.getHit()
+						)
+					);
 			
 			insertResult = detailDAO.insertSightDetail( 
-					new SightDetail(
-								content.getTel(),
-								content.getAddr(),
-								content.getImages(),
-								content.getHomepage()
-							));
+						new SightDetail(
+							content.getTel(),
+							content.getAddr(),
+							content.getImages(),
+							content.getHomepage()
+						)
+					);
 
 			break;
 		}
@@ -173,14 +177,14 @@ public class CommonMethod {
 	// build( facilityName like )
 	public StringBuilder buildFacilityname( StringBuilder builder, String facilityName ) {
 		return builder.append( Common.FACILITY_NAME.getValue() + " " )
-					  .append( Query.LIKE.getValue() )
-					  .append( "'%" + facilityName + "%'" );
+			     .append( Query.LIKE.getValue() )
+			     .append( "'%" + facilityName + "%'" );
 	}
 	
 	// build(hits)
 	public StringBuilder buildHits( StringBuilder builder ) {
 		return builder.append( Common.HITS.getValue() )
-				  	  .append( " >= " + 2 );
+			     .append( " >= " + 2 );
 	}
 	
 	// build(in)
@@ -212,18 +216,18 @@ public class CommonMethod {
 		}
 		
 		return builder.delete( builder.lastIndexOf( "," ), builder.length() )
-				   	  .append( Query.WHERE.getValue() )
-				   	  .append( Common.FACILITY_NAME.getValue() )
-				   	  .append( " = (" )
-				   	  .append( Query.UPDATE_SERVICE_SUBQUERY.getValue() );
+		  	     .append( Query.WHERE.getValue() )
+			     .append( Common.FACILITY_NAME.getValue() )
+			     .append( " = (" )
+			     .append( Query.UPDATE_SERVICE_SUBQUERY.getValue() );
 	}
 	
 	// build( (set) field = 'value' where id = (id) ) 
 	public StringBuilder buildSightUpdate( StringBuilder builder, String field, Object value ) {
 		return builder.append( field + " = " )
-					  .append( value instanceof String ? ( "'" + value + "'" ) : value )
-					  .append( Query.WHERE.getValue() )
-					  .append( Common.ID.getValue() + " = " );
+			     .append( value instanceof String ? ( "'" + value + "'" ) : value )
+			     .append( Query.WHERE.getValue() )
+			     .append( Common.ID.getValue() + " = " );
 	}
 	
 }
