@@ -177,14 +177,14 @@ public class CommonMethod {
 	// build( facilityName like )
 	public StringBuilder buildFacilityname( StringBuilder builder, String facilityName ) {
 		return builder.append( Common.FACILITY_NAME.getValue() + " " )
-			     .append( Query.LIKE.getValue() )
-			     .append( "'%" + facilityName + "%'" );
+			      .append( Query.LIKE.getValue() )
+			      .append( "'%" + facilityName + "%'" );
 	}
 	
 	// build(hits)
 	public StringBuilder buildHits( StringBuilder builder ) {
 		return builder.append( Common.HITS.getValue() )
-			     .append( " >= " + 2 );
+			      .append( " >= " + 2 );
 	}
 	
 	// build(in)
@@ -216,18 +216,18 @@ public class CommonMethod {
 		}
 		
 		return builder.delete( builder.lastIndexOf( "," ), builder.length() )
-		  	     .append( Query.WHERE.getValue() )
-			     .append( Common.FACILITY_NAME.getValue() )
-			     .append( " = (" )
-			     .append( Query.UPDATE_SERVICE_SUBQUERY.getValue() );
+		  	      .append( Query.WHERE.getValue() )
+			      .append( Common.FACILITY_NAME.getValue() )
+			      .append( " = (" )
+			      .append( Query.UPDATE_SERVICE_SUBQUERY.getValue() );
 	}
 	
 	// build( (set) field = 'value' where id = (id) ) 
 	public StringBuilder buildSightUpdate( StringBuilder builder, String field, Object value ) {
 		return builder.append( field + " = " )
-			     .append( value instanceof String ? ( "'" + value + "'" ) : value )
-			     .append( Query.WHERE.getValue() )
-			     .append( Common.ID.getValue() + " = " );
+			      .append( value instanceof String ? ( "'" + value + "'" ) : value )
+			      .append( Query.WHERE.getValue() )
+			      .append( Common.ID.getValue() + " = " );
 	}
 	
 }
